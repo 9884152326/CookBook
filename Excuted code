@@ -1,0 +1,121 @@
+Here's a simple "cookbook" example in Java, where we'll create a recipe book with a few dishes and their corresponding ingredients and instructions.
+
+```
+import java.util.ArrayList;
+import java.util.List;
+
+// Recipe class
+class Recipe {
+    private String name;
+    private List<String> ingredients;
+    private List<String> instructions;
+
+    public Recipe(String name, List<String> ingredients, List<String> instructions) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+    }
+
+    public void displayRecipe() {
+        System.out.println("Recipe: " + name);
+        System.out.println("Ingredients:");
+        for (String ingredient : ingredients) {
+            System.out.println("- " + ingredient);
+        }
+        System.out.println("Instructions:");
+        for (int i = 0; i < instructions.size(); i++) {
+            System.out.println((i + 1) + ". " + instructions.get(i));
+        }
+    }
+}
+
+// Cookbook class
+class Cookbook {
+    private List<Recipe> recipes;
+
+    public Cookbook() {
+        this.recipes = new ArrayList<>();
+    }
+
+    public void addRecipe(Recipe recipe) {
+        this.recipes.add(recipe);
+    }
+
+    public void displayRecipe(String name) {
+        for (Recipe recipe : recipes) {
+            if (recipe.name.equals(name)) {
+                recipe.displayRecipe();
+                return;
+            }
+        }
+        System.out.println("Recipe not found.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a cookbook
+        Cookbook cookbook = new Cookbook();
+
+        // Add recipes
+        List<String> grilledChickenIngredients = new ArrayList<>();
+        grilledChickenIngredients.add("chicken breast");
+        grilledChickenIngredients.add("salt");
+        grilledChickenIngredients.add("pepper");
+        grilledChickenIngredients.add("olive oil");
+
+        List<String> grilledChickenInstructions = new ArrayList<>();
+        grilledChickenInstructions.add("Preheat grill to medium-high heat.");
+        grilledChickenInstructions.add("Season chicken with salt and pepper.");
+        grilledChickenInstructions.add("Grill chicken for 5-6 minutes per side.");
+
+        Recipe grilledChickenRecipe = new Recipe("Grilled Chicken", grilledChickenIngredients, grilledChickenInstructions);
+        cookbook.addRecipe(grilledChickenRecipe);
+
+        List<String> tomatoSoupIngredients = new ArrayList<>();
+        tomatoSoupIngredients.add("canned tomatoes");
+        tomatoSoupIngredients.add("onion");
+        tomatoSoupIngredients.add("garlic");
+        tomatoSoupIngredients.add("chicken broth");
+
+        List<String> tomatoSoupInstructions = new ArrayList<>();
+        tomatoSoupInstructions.add("Saute onion and garlic in olive oil.");
+        tomatoSoupInstructions.add("Add canned tomatoes and chicken broth.");
+        tomatoSoupInstructions.add("Simmer for 20-25 minutes.");
+
+        Recipe tomatoSoupRecipe = new Recipe("Tomato Soup", tomatoSoupIngredients, tomatoSoupInstructions);
+        cookbook.addRecipe(tomatoSoupRecipe);
+
+        // Display recipes
+        cookbook.displayRecipe("Grilled Chicken");
+        System.out.println("\n");
+        cookbook.displayRecipe("Tomato Soup");
+    }
+}
+```
+
+*Output:*
+
+```
+Recipe: Grilled Chicken
+Ingredients:
+- chicken breast
+- salt
+- pepper
+- olive oil
+Instructions:
+1. Preheat grill to medium-high heat.
+2. Season chicken with salt and pepper.
+3. Grill chicken for 5-6 minutes per side.
+
+Recipe: Tomato Soup
+Ingredients:
+- canned tomatoes
+- onion
+- garlic
+- chicken broth
+Instructions:
+1. Saute onion and garlic in olive oil.
+2. Add canned tomatoes and chicken broth.
+3. Simmer for 20-25 minutes.
+```
